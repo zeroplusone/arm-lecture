@@ -11,7 +11,7 @@
 fibonacci:
 	@ ADD/MODIFY CODE BELOW
 	@ PROLOG
-	push {r3, r4, r5, lr}
+	push { r4, r5, lr}
 
 	@ R4 = R0 - 0 (update flags)
 	sub r4, r0, #0
@@ -35,16 +35,16 @@ fibonacci:
 	bl fibonacci
 	@ R0 = R5 + R0 (update flags)
 	add r0, r5, r0
-	pop {r3, r4, r5, pc}		@EPILOG
+	pop { r4, r5, pc}		@EPILOG
 
 	@ END CODE MODIFICATION
 .L3:
 	mov r0, #0			@ R0 = 0
-	pop {r3, r4, r5, pc}		@ EPILOG
+	pop { r4, r5, pc}		@ EPILOG
 
 .L4:
 	mov r0, #1			@ R0 = 1
-	pop {r3, r4, r5, pc}		@ EPILOG
+	pop { r4, r5, pc}		@ EPILOG
 
 	.size fibonacci, .-fibonacci
 	.end
