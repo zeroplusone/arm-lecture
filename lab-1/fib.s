@@ -16,6 +16,10 @@ fibonacci:
 
 	push { r4, lr}
 
+	@ if(R0 <=0 ) goto .L2 (which return -1 which means error)
+	cmp r0, #-1
+	ble .L2
+
 	@ if(R0 == 0) goto .L3 (which returns prev)
 	cmp r0, #0
 	beq .L3
@@ -39,6 +43,11 @@ fibonacci:
 	pop { r4, pc}		@EPILOG
 
 	@ END CODE MODIFICATION
+
+.L2:
+	mov r0, #-1
+	pop { r4, pc}
+
 .L3:
 	mov r0, r2			@ R0 = prev
 	pop { r4, pc}		@ EPILOG
